@@ -20,6 +20,19 @@ export default function App() {
   const [responses, setResponses] = useState(null)
   const [hasGenerated, setHasGenerated] = useState(false)
 
+  const fillTestData = () => {
+    setFormData({
+      reviewText: 'We had an amazing dinner here last Saturday night. The pasta was cooked perfectly al dente and the tiramisu was the best I\'ve ever had. Our server Maria was incredibly attentive and knowledgeable about the wine pairings. The only minor issue was the wait time for a table — about 25 minutes even with a reservation. But overall, a wonderful experience and we\'ll definitely be back!',
+      stars: 4,
+      platform: 'google',
+      industry: 'restaurant',
+      businessName: 'Bella Cucina Italian Kitchen',
+    })
+    setTone('friendly')
+    setResponses(null)
+    setHasGenerated(false)
+  }
+
   const canGenerate = formData.reviewText.trim().length > 0 && formData.stars > 0
 
   const detectedKeywords = useMemo(() => {
@@ -56,7 +69,7 @@ export default function App() {
 
   return (
     <div className="bg-abyss min-h-screen bg-glow bg-grid">
-      <div className="relative z-10 max-w-6xl mx-auto px-4 py-8 sm:py-12 animate-fadeIn">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-4 py-8 sm:py-12 animate-fadeIn">
         {/* Breadcrumb */}
         <nav className="mb-8 text-sm text-galactic">
           <a href="https://seo-tools-tau.vercel.app/" className="text-azure hover:text-white transition-colors">Free Tools</a>
@@ -81,6 +94,16 @@ export default function App() {
           <p className="text-cloudy text-sm sm:text-base max-w-2xl">
             Generate 3 professional response variations for any customer review. Paste the review, select your parameters, and get ready-to-copy responses tailored to your platform and industry.
           </p>
+        </div>
+
+        <div className="flex justify-end mb-4">
+          <button
+            type="button"
+            onClick={fillTestData}
+            className="px-3 py-1.5 text-xs font-mono bg-prince/20 text-prince border border-prince/30 rounded hover:bg-prince/30 transition-colors focus:outline-none focus:ring-2 focus:ring-prince focus:ring-offset-2 focus:ring-offset-abyss"
+          >
+            Fill Test Data
+          </button>
         </div>
 
         {/* Main Layout */}
